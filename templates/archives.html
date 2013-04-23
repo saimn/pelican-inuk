@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="content">
+  <h1>Archives</h1>
+
+  <section class="nav-archives archives">
+    <h2>Catégories</h2>
+    <ul>
+      {% for cat, articles in categories|sort %}
+      <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <h2>Tags</h2>
+    <ul>
+      {% for tag, articles in tags|sort %}
+      <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="chronologie archives">
+    <h2>Chronologie</h2>
+      {% for year, list in dates|groupby('date.year')|reverse %}
+        <h3>{{ year }}</h3>
+        <ul>
+        {% for article in list %}
+        <li><a href='{{ article.url }}'>{{ article.title }}</a>,
+          <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></li>
+        {% endfor %}
+        </ul>
+      {% endfor %}
+  </section>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME|striptags }} - {{ category }}{% endblock %}
+
+{% block content %}
+{% if articles %}
+<section id="content">
+  {% for article in articles_page.object_list %}
+  <article class="hentry">
+    <header>
+      <h1 class="entry-title">
+        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+      <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+    </header>
+
+    <p class="entry-summary">
+      {{ article.summary|striptags }}
+    </p>
+    <p><a class="readmore" href="{{ SITEURL }}/{{ article.url }}">
+        → Lire la suite ...</a></p>
+  </article>
+  {% endfor %}
+</section><!-- /#content -->
+{% endif %}
+{% endblock content %}

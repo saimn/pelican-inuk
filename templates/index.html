@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content_title %}{% endblock %}
+
+{% block content %}
+{% if articles %}
+<section id="content">
+{% for article in articles_page.object_list %}
+  {% if loop.index < 6 %}
+  <article class="hentry">
+    <header>
+      <h1 class="entry-title">
+        <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+      <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+    </header>
+
+    <p class="entry-summary">
+      {# {{ article.content }} #}
+      {{ article.summary|striptags }}
+    </p>
+    <p><a class="readmore" href="{{ SITEURL }}/{{ article.url }}">
+        → Lire la suite ...</a></p>
+  </article>
+  {% endif %}
+{% endfor %}
+{% if loop.length > 1 or articles_page.has_previous() %}
+  <p>→ <a href="archives.html">Tous les billets ...</a></p>
+</section><!-- /#content -->
+{% endif %}
+{% endif %}
+{% endblock content %}
