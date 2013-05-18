@@ -1,4 +1,6 @@
 /* -*- scss-compile-at-save: nil -*- */
+@charset "UTF-8";
+
 /*
   color: #FF7200;
   color: #EA7804;
@@ -16,7 +18,7 @@ $gray:              #999;
 $darkgray:          #666;
 $lightgray:         #ccc;
 
-@import "inuit.css/inuit.css/inuit";
+@import "inuit.css/inuit";
 
 /* Layout
    -------------------------------------------------------------- */
@@ -116,6 +118,7 @@ h2 {
 
 a {
   color: $link-color;
+  text-decoration: none;
 
   &:focus, &:hover {
     text-decoration : none;
