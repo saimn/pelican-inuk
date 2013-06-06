@@ -4,6 +4,10 @@
 {% block content %}
 {% if articles %}
 <section id="content">
+  {% block page_title %}
+  <h1 class="page-title">Catégorie {{ category }}</h1>
+  {% endblock %}
+
   {% for article in articles_page.object_list %}
   <article class="hentry">
     <header>
